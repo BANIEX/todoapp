@@ -1,4 +1,8 @@
 # todoapp
 
+This simple to-do app keeps track of details and event you want to attend to later
 
- https://baniex.github.io/todoapp/
+Kindly check out @ https://baniex.github.io/todoapp/
+
+
+ 
