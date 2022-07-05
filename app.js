@@ -1,4 +1,3 @@
-let sup = 1;
 window.addEventListener("DOMContentLoaded", function () {
   let note_app_content = JSON.parse(localStorage.getItem("note_app_content"));
   let array = [];
@@ -23,7 +22,7 @@ window.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", function () {
       sup = 2;
       let note_text = document.getElementById("note_text").value;
-      alert("hi");
+      // alert("hi");
       if (note_app_content == null) {
         array.push(note_text);
         localStorage.setItem("note_app_content", JSON.stringify(array));
@@ -47,56 +46,40 @@ window.addEventListener("DOMContentLoaded", function () {
       // console.log(currentArray.length);
 
       document.getElementById("note_text").value = "";
-      updater()
-
+      updater();
     });
 
-  function updater(){
+  function updater() {
     let no_of_to_do_ticks = document.querySelectorAll(".to_do_tick").length;
-    let to_do_ticks_div = document.querySelectorAll(".to_do_item")
-  console.log(no_of_to_do_ticks);
-  for (let i = 0; i < no_of_to_do_ticks; i++) {
-    console.log(i);
-    let jar = JSON.parse(localStorage.getItem("note_app_content"));
+    let to_do_ticks_div = document.querySelectorAll(".to_do_item");
 
+    console.log(no_of_to_do_ticks);
+    for (let i = 0; i < no_of_to_do_ticks; i++) {
+      document
+        .querySelectorAll(".to_do_tick")
+        [i].addEventListener("change", function () {
+          // alert(`hi div${i}`);
+          to_do_ticks_div[i].remove();
 
-    
-    document
-      .querySelectorAll(".to_do_tick")
-      [i].addEventListener("change", function () {
-        alert(`hi div${i}`);
-        to_do_ticks_div[i].remove();
-        alert(i);
+          lsEditor();
+        });
+    }
+  }
+  updater();
 
-
-        console.log(jar);
-        jar.splice(i,1);
-        console.log(jar);
-        
-        // lsEditor()
-        // location.reload()
-        // alert("na down");
-      });
-
-      localStorage.setItem(
-        "note_app_content",
-        JSON.stringify(jar)
+  function lsEditor() {
+    let updateArray = [];
+    for (
+      let i = 0;
+      i < document.getElementsByClassName("to_do_item").length;
+      i++
+    ) {
+      console.log(document.getElementsByClassName("to_do_item")[i].innerText);
+      updateArray.push(
+        document.getElementsByClassName("to_do_item")[i].innerText
       );
-
-
-
+    }
+    console.log(updateArray);
+    localStorage.setItem("note_app_content", JSON.stringify(updateArray));
   }
-
-  }
-  updater()
-
-
-  function lsEditor(){
-  note_app_content = JSON.parse(localStorage.getItem("note_app_content"));
-  console.log(note_app_content)
-
-
-  }
-
-  
 });
